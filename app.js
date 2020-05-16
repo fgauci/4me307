@@ -1,14 +1,12 @@
-const express = require('express')
-const app = express();
+const http = require('http');
+const port = process.env.PORT || 3000
 
-app.get('/', (req, res) => {
-  res.render('index')
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello World</h1>');
 });
 
-app.listen(8000, () => {
-  console.log('localhost:8000')
+server.listen(port,() => {
+  console.log(`Server running at port `+port);
 });
-
-app.set('view engine', 'pug');
-
-app.use(express.static('public'));
